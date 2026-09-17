@@ -1,15 +1,30 @@
 # 01 — Whole-Body Control (WBC)
 
 > WBC là bài toán điều khiển **đồng thời toàn bộ các khớp** của robot humanoid (chân, thân, tay, đầu) để vừa giữ thăng bằng/di chuyển, vừa thực hiện tác vụ tay — thay vì điều khiển từng phần tách rời (chân đi, tay với riêng).
+>
+> 📖 **Giải thích chi tiết đầy đủ** (định nghĩa, cơ chế, công thức) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
 
 ---
 
 ## A. Khái niệm cần nắm, theo thứ tự
 
 1. **WBC cổ điển (model-based):** task-space control, operational space control, QP (quadratic programming) giải đồng thời nhiều ràng buộc (cân bằng, giới hạn khớp, tiếp xúc chân), ZMP (Zero Moment Point), MPC (Model Predictive Control) cho dáng đi. Đây là cách robot humanoid được điều khiển trong ~20 năm trước khi RL phổ biến.
+   > 📚 **Đọc thêm (paper gốc, kinh điển — ưu tiên đọc theo thứ tự):**
+   > - **Khatib (1987)** — *"A unified approach for motion and force control of robot manipulators: The operational space formulation"*, IEEE J. Robotics and Automation 3(1). Paper khai sinh operational-space control — nền của mọi WBC task-space sau này. [Semantic Scholar](https://www.semanticscholar.org/paper/A-unified-approach-for-motion-and-force-control-of-Khatib/33576c0fc316c45c3672523114b20a5bb996e1f4)
+   > - **Khatib, Sentis, Park (2004)** — *"Whole Body Dynamic Behavior and Control of Human-Like Robots"*, Int. J. Humanoid Robotics 1(1). Mở rộng operational-space control sang toàn thân humanoid — PDF miễn phí trên trang chính chủ (Khatib Lab, Stanford). [PDF](https://khatib.stanford.edu/publications/pdfs/Khatib_2004_IJHR.pdf)
+   > - **Kajita et al. (2003)** — *"Biped Walking Pattern Generation by using Preview Control of Zero-Moment Point"*, ICRA 2003. Paper kinh điển định nghĩa ZMP preview control — mọi tài liệu về dáng đi humanoid đều trích dẫn bài này. [IEEE Xplore](https://ieeexplore.ieee.org/document/1241826/)
+   > - **Escande, Mansard, Wieber (2014)** — *"Hierarchical Quadratic Programming: Fast Online Humanoid-Robot Motion Generation"*, IJRR 33(7). Cách giải nhiều task theo thứ tự ưu tiên bằng QP phân tầng (HQP) — công cụ toán học đứng sau hầu hết WBC cổ điển hiện đại. [DOI](https://doi.org/10.1177/0278364914521306)
+   > - Bổ trợ: **Stanford CS327A — Robotic Manipulation** (khoá của chính Khatib) và **MIT Underactuated Robotics** (`../../resources/03-robotics.md`) để có nền toán trước khi đọc 4 bài trên.
 2. **WBC học sâu (learning-based):** thay vì viết tay bộ điều khiển, huấn luyện một policy (RL) học cách tái tạo (track) chuyển động tham chiếu từ dữ liệu người. Reward = "giống chuyển động mẫu" thay vì reward thủ công.
+   > 📚 **Đọc thêm:**
+   > - **Rudin, Hoeller, Reist, Hutter (2022)** — *"Learning to Walk in Minutes Using Massively Parallel Deep Reinforcement Learning"*, CoRL 2022. Bài chuyển giao quan trọng: huấn luyện song song hàng nghìn robot ảo trên 1 GPU — kỹ thuật nền tảng mà Isaac Lab/Isaac Gym và cả SONIC kế thừa để scale huấn luyện. [arXiv:2109.11978](https://arxiv.org/abs/2109.11978)
+   > - Xem tiếp `04-imitation-learning-rl/` — DeepMimic/AMP là bước tiếp theo chuyển từ "RL với reward thủ công" sang "RL bắt chước chuyển động mẫu".
 3. **Kiến trúc "decoupled WBC"** (SONIC): tách một policy motion-tracking cấp thấp (biết cách di chuyển tự nhiên) khỏi một planner/policy cấp cao (quyết định *làm gì*: đi đâu, cầm gì). Cấp cao có thể là con người (teleop), một kinematic planner, hoặc một VLA (GR00T N1.x). Đây là lý do một policy WBC duy nhất phục vụ được cả teleoperation lẫn VLA.
+   > 📚 **Đọc thêm:** đây là khái niệm riêng của SONIC — nguồn chính xác nhất là chính paper SONIC ([arXiv:2511.07820](https://arxiv.org/abs/2511.07820), mục B) và tài liệu kiến trúc trong `GR00T-WholeBodyControl` (mục B). Đọc `humanoid-wbc-review` (mục B) để thấy "decoupled/hierarchical control" là một trong 4 paradigm được cộng đồng công nhận, không phải riêng NVIDIA nghĩ ra.
 4. **Token space thống nhất:** SONIC biểu diễn lệnh điều khiển bằng một không gian token chung, để cả tín hiệu từ VR teleop và tín hiệu từ VLA đều "nói cùng một ngôn ngữ" với policy cấp thấp.
+   > 📚 **Đọc thêm:**
+   > - **Reed et al. (DeepMind, 2022)** — *"A Generalist Agent"* (Gato). Paper kinh điển chứng minh ý tưởng "token hoá mọi modality (ảnh, văn bản, hành động khớp) thành một chuỗi token chung cho transformer" — chính là nguyên lý mà "token space thống nhất" của SONIC/GR00T kế thừa, chỉ áp dụng riêng cho humanoid. [arXiv:2205.06175](https://arxiv.org/abs/2205.06175) · [DeepMind blog](https://deepmind.google/blog/a-generalist-agent/)
+   > - Đối chiếu thêm với cách RT-2 và ACT (đã có ở `../../resources/08-core-reading-list.md` Track C2) biểu diễn hành động dưới dạng token/chunk — cùng một họ ý tưởng, khác quy mô ứng dụng.
 
 ---
 

@@ -33,7 +33,7 @@ Teleoperation (thu dữ liệu qua VR) + Triển khai robot thật (G1)  ──�
 2. **GR00T N1** — *An Open Foundation Model for Generalist Humanoid Robots* — [arXiv:2503.14734](https://arxiv.org/abs/2503.14734). Model VLA gốc; N1.5/N1.6/N1.7 là các bản nâng cấp (N1.7 dùng pretraining EgoScale trên 20,000+ giờ video egocentric, phát hiện scaling law đầu tiên cho sự khéo léo của robot) — [HF blog N1.7](https://huggingface.co/blog/nvidia/gr00t-n1-7).
 3. **GR00T-WholeBodyControl** (repo tổng, umbrella) — [nvlabs.github.io/GR00T-WholeBodyControl](https://nvlabs.github.io/GR00T-WholeBodyControl/) · [GitHub](https://github.com/NVlabs/GR00T-WholeBodyControl). Đây là **tài liệu trung tâm** — mọi getting-started, tutorial VR teleop, training guide đều nằm ở đây.
 
-**Dữ liệu quy mô lớn dùng để huấn luyện SONIC:** dataset nội bộ **BONES-SEED** — 142,000+ chuyển động người (~288 giờ), kèm quỹ đạo G1 tương ứng đã retarget sẵn. Đây là lý do vì sao "human motion dataset" và "retargeting" đứng trước "WBC" trong sơ đồ trên — WBC hiện đại được huấn luyện *từ* dữ liệu người đã retarget, không phải tay viết reward.
+**Dữ liệu quy mô lớn dùng để huấn luyện SONIC:** **BONES-SEED** — 142,220 chuyển động người (~288 giờ, 522 diễn viên), kèm quỹ đạo G1 tương ứng đã retarget sẵn. ⚠️ *Đã kiểm chứng lại (xem `03-human-motion-datasets/`): dataset này do **Bones Studio** công bố (gated trên HuggingFace `bones-studio/seed`), KHÔNG phải dữ liệu nội bộ của NVIDIA — NVIDIA đóng góp công cụ retargeting (SOMA-retargeter) chứ không sở hữu dữ liệu gốc.* Đây là lý do vì sao "human motion dataset" và "retargeting" đứng trước "WBC" trong sơ đồ trên — WBC hiện đại được huấn luyện *từ* dữ liệu người đã retarget, không phải tay viết reward.
 
 ---
 

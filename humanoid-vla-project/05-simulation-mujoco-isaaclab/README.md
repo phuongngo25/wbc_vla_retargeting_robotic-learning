@@ -1,6 +1,8 @@
 # 05 — Simulation: MuJoCo & Isaac Lab
 
 > Đây là "sân tập" — nơi bạn thực sự chạy retargeting, huấn luyện WBC, và kiểm thử policy trước khi đụng tới robot thật. Chọn công cụ đúng ngay từ đầu tiết kiệm rất nhiều thời gian.
+>
+> 📖 **Giải thích chi tiết đầy đủ** (kiến trúc physics engine, GPU parallelization, định dạng file): xem `NOI-DUNG-CHI-TIET.md`.
 
 ---
 
@@ -14,6 +16,12 @@
 | **HumanoidVerse** (CMU LeCAR Lab) | Lớp trừu tượng "multi-simulator": cùng 1 code, chạy được trên IsaacGym/Genesis/Isaac Lab, hỗ trợ sẵn Unitree H1/G1, có sẵn pipeline sim-to-sim/sim-to-real. | Khi muốn so sánh cùng 1 policy chạy trên nhiều simulator, hoặc tránh khoá cứng vào 1 framework khi mới học. |
 
 **Gợi ý cho người mới:** bắt đầu bằng **MuJoCo thuần** (nhẹ, hiểu physics engine), sau đó **MuJoCo Playground** (thấy RL chạy nhanh trên GPU), rồi mới sang **Isaac Lab** (đúng pipeline GR00T). HumanoidVerse dùng khi bạn đã quen cả hai và muốn thực nghiệm so sánh.
+
+> 📚 **Đọc thêm (paper gốc của từng công cụ — nền tảng kỹ thuật đứng sau, không chỉ đọc docs):**
+> - **Todorov, Erez, Tassa (2012)** — *"MuJoCo: A Physics Engine for Model-Based Control"*, IROS 2012, tr. 5026–5033. Paper gốc giải thích vì sao MuJoCo tính tiếp xúc (contact) khác các physics engine game (Bullet, PhysX) — quan trọng để hiểu sai số vật lý khi retarget/huấn luyện. [Bản PDF (ResearchGate)](https://www.researchgate.net/publication/261353949_MuJoCo_A_physics_engine_for_model-based_control)
+> - **MuJoCo Playground** — nhóm Google DeepMind, 2025. Kiến trúc GPU-accelerated JAX/Warp, danh sách đầy đủ task humanoid. [arXiv:2502.08844](https://arxiv.org/abs/2502.08844) (đã dẫn ở mục B).
+> - **Makoviychuk et al. (NVIDIA, 2021)** — *"Isaac Gym: High Performance GPU-Based Physics Simulation For Robot Learning"*, NeurIPS Datasets & Benchmarks 2021. Isaac Gym là tiền thân trực tiếp của Isaac Lab (cùng đội NVIDIA, cùng ý tưởng "physics + neural net cùng chạy trên GPU, không qua CPU") — đọc bài này để hiểu *tại sao* Isaac Lab nhanh, trước khi đọc docs Isaac Lab. [arXiv:2108.10470](https://arxiv.org/abs/2108.10470)
+> - **HumanoidVerse** chưa có paper riêng — đọc trực tiếp README kiến trúc trên GitHub (đã dẫn ở mục B).
 
 ---
 

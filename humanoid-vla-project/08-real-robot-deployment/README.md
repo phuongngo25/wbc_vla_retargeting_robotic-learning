@@ -1,17 +1,25 @@
 # 08 — Teleoperation & Triển khai trên robot thật
 
 > Bước cuối cùng của pipeline: dùng VR để **thu dữ liệu** trên robot thật (teleoperation), và **triển khai** policy đã huấn luyện trong simulation lên phần cứng thật. Đây là phần **cần phần cứng** (robot G1, kính VR) — nếu chưa có, vẫn học được lý thuyết + thử phần simulation-only.
+>
+> 📖 **Giải thích chi tiết đầy đủ** (kiến trúc teleop, quy trình VR setup, deployment) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
 
 ---
 
 ## A. Khái niệm cần nắm, theo thứ tự
 
 1. **Vì sao cần teleoperation:** để thu dữ liệu chuyển động/thao tác *thật* trên robot thật (không qua retargeting từ dữ liệu người ngoài) — dữ liệu này dùng để fine-tune VLA hoặc bổ sung vào tập huấn luyện motion-tracking, đặc biệt cho các thao tác tay tinh xảo mà retargeting từ mocap không nắm bắt tốt.
+   > 📚 **Đọc thêm:** ví dụ kinh điển chứng minh giá trị của dữ liệu teleop cho imitation learning — **ACT/ALOHA** (Zhao et al. 2023, [arXiv:2304.13705](https://arxiv.org/abs/2304.13705), đã có Track C2): toàn bộ policy học từ vài chục demo teleop trên phần cứng giá rẻ, không cần simulation.
 2. **Kiến trúc teleoperation qua VR:** người đeo kính VR → tracking đầu/tay/tay cầm → ánh xạ (qua IK, giống retargeting nhưng real-time) sang tư thế robot → robot thực thi theo thời gian thực, có phản hồi hình ảnh stereoscopic (nhìn qua camera robot) gửi ngược lại kính VR.
+   > 📚 **Đọc thêm:** **Cheng, Li, Yang, Yang, Wang (2024)** — *"Open-TeleVision: Teleoperation with Immersive Active Visual Feedback"*, CoRL 2024. Mô tả chính xác kiến trúc "stereoscopic feedback + head/arm tracking" cho humanoid (Unitree H1, Fourier GR-1) — cùng nguyên lý XRoboToolkit/GR00T teleop áp dụng, nhưng bài này giải thích rõ ràng, dễ đọc hơn docs kỹ thuật. [arXiv:2407.01512](https://arxiv.org/abs/2407.01512) · [Trang dự án](https://robot-tv.github.io/)
 3. **XRoboToolkit** (khớp với "XToolRobotKits" mentor nhắc — tên chính xác là **XRoboToolkit**): framework teleoperation mã nguồn mở, chuẩn OpenXR, hỗ trợ tracking đầu/tay/controller/tracker phụ, độ trễ thấp, đã test trên Ubuntu 22.04/24.04. Hỗ trợ nhiều nền tảng robot (tay máy UR5, ARX R5, và cả humanoid Galaxea R1-Lite).
+   > 📚 **Đọc thêm:** paper chính thức đã dẫn ở mục B ([arXiv:2508.00097](https://arxiv.org/abs/2508.00097)) — đọc phần kiến trúc OpenXR + IK tối ưu hoá trước khi cài đặt thực hành.
 4. **Quy trình teleop chính thức trong GR00T-WholeBodyControl:** setup kính VR → kết nối với policy WBC (SONIC) qua token space chung → điều khiển whole-body robot trực tiếp bằng chuyển động cơ thể người vận hành.
+   > 📚 **Đọc thêm:** 2 tutorial chính thức ở mục B là nguồn chính xác nhất — không có nguồn thứ cấp nào thay thế được vì đây là quy trình riêng của GR00T-WholeBodyControl.
 5. **Từ dữ liệu teleop tới fine-tuning:** dữ liệu thu được (ảnh + trạng thái khớp + hành động) dùng để fine-tune GR00T N1.x hoặc để bổ sung reward/data cho WBC — đây là vòng lặp "data flywheel" thực sự của các hệ thống VLA hiện đại.
+   > 📚 **Đọc thêm:** phần fine-tuning trong repo `NVIDIA/Isaac-GR00T` (đã dẫn ở `../06-vla-groot-sonic/`) — đọc code fine-tune thực tế thay vì chỉ đọc mô tả trong paper.
 6. **Triển khai (deployment):** xuất policy đã huấn luyện sang ONNX (định dạng nhẹ, chạy trên phần cứng biên như Jetson gắn trên robot), kiểm tra độ trễ thực thi, kiểm tra an toàn (giới hạn tốc độ, emergency stop) trước khi chạy trên robot thật.
+   > 📚 **Đọc thêm:** [onnx.ai](https://onnx.ai) — tài liệu chính thức của định dạng ONNX (không chuyên robot, nhưng là nguồn chuẩn để hiểu format trước khi export); mục "Reference: ONNX models & deployment" trong `GR00T-WholeBodyControl` (mục B) cho phần áp dụng cụ thể vào humanoid.
 
 ---
 

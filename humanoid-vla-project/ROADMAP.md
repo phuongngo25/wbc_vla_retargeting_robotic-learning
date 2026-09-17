@@ -30,7 +30,7 @@
 - Hiểu body model SMPL/SMPL-X là gì, khác BVH/FBX ở điểm nào.
 - Đăng ký tài khoản AMASS, tải một subset nhỏ (ví dụ CMU hoặc HumanEva).
 - Tải LAFAN1 (public, không cần đăng ký) — thử mở bằng BVH viewer.
-- Đọc mô tả OMOMO và BONES-SEED để biết dataset human-object-interaction và dataset độc quyền của NVIDIA khác gì AMASS/LAFAN1.
+- Đọc mô tả OMOMO và BONES-SEED để biết dataset human-object-interaction và dataset quy mô lớn (BONES-SEED, do Bones Studio công bố, NVIDIA dùng làm dữ liệu huấn luyện chính cho SONIC) khác gì AMASS/LAFAN1.
 
 **Done khi:** bạn visualize được ít nhất 1 sequence AMASS và 1 sequence LAFAN1 trên máy mình.
 

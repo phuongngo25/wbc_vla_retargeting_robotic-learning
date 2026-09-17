@@ -1,19 +1,26 @@
 # 02 — Motion Retargeting
 
 > Retargeting là bài toán: cho một chuyển động của **người** (khác hình dạng, số bậc tự do, tỷ lệ cơ thể), tính ra chuyển động tương ứng cho **robot humanoid** (G1, H1...) sao cho vẫn giữ được "ý nghĩa" của động tác (dáng đi, tư thế, tiếp xúc chân/tay) mà không vi phạm giới hạn vật lý của robot.
+>
+> 📖 **Giải thích chi tiết đầy đủ** (định nghĩa, cơ chế, thuật toán) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
 
 ---
 
 ## A. Khái niệm cần nắm, theo thứ tự
 
 1. **Vì sao không thể copy trực tiếp góc khớp:** người có ~200+ bậc tự do (mô hình SMPL/SMPL-X), robot G1 có ~23–43 khớp tuỳ cấu hình; tỷ lệ tay/chân/thân khác nhau; giới hạn góc khớp và tốc độ motor khác nhau.
+   > 📚 **Đọc thêm:** **Gleicher (1998)** — *"Retargetting Motion to New Characters"*, SIGGRAPH 98, tr. 33–42. Paper khai sinh chính xác bài toán này trong đồ hoạ máy tính (trước cả khi áp dụng cho robot) — định nghĩa "constraint" cần giữ lại khi chuyển động giữa hai khung xương khác tỷ lệ. Đọc bài này trước để hiểu bản chất toán học của vấn đề, độc lập công cụ cụ thể. [PDF gốc](https://graphics.cs.wisc.edu/Papers/1998/Gle98/retarget-preprint.pdf)
 2. **Skeleton mapping:** ánh xạ các khớp tương ứng (vai người ↔ vai robot...), scale theo tỷ lệ cơ thể.
+   > 📚 **Đọc thêm:** cùng bài Gleicher (1998) ở trên — phần "feature-based constraints" chính là cơ sở lý thuyết của skeleton mapping hiện đại.
 3. **Inverse Kinematics (IK) per-frame:** với mỗi frame chuyển động, giải IK để tìm góc khớp robot khớp với vị trí đầu mút (bàn tay, bàn chân, đầu) đã scale.
+   > 📚 **Đọc thêm:** **Aristidou & Lasenby (2011)** — *"FABRIK: A Fast, Iterative Solver for the Inverse Kinematics Problem"*, Graphical Models 73(5), 243–260. Thuật toán IK lặp, nhanh, không cần ma trận xoay — nền tảng của rất nhiều bộ giải IK real-time dùng trong retargeting/animation ngày nay. [ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S1524070311000178) · [PDF (ResearchGate)](https://www.researchgate.net/publication/220632147_FABRIK_A_fast_iterative_solver_for_the_Inverse_Kinematics_problem). Nền toán tổng quát hơn: chương IK trong **Modern Robotics** (`../../resources/03-robotics.md`).
 4. **Ràng buộc vật lý:** ổn định tiếp xúc chân (foot contact), không vi phạm giới hạn khớp, giới hạn tốc độ motor (velocity limiting) — nếu bỏ qua, chuyển động retarget được nhưng robot thật không thực thi nổi.
+   > 📚 **Đọc thêm:** **Harvey, Yurick, Nowrouzezahrai, Pal (2020)** — *"Robust Motion In-Betweening"*, ACM ToG (Proc. SIGGRAPH) 39(4). Đây chính là paper gốc tạo ra dataset **LAFAN1** (`03-human-motion-datasets/`) — đọc để hiểu vì sao chất lượng tiếp xúc chân/độ mượt được coi trọng ở cấp độ sinh dữ liệu, trước cả khi tới bước retargeting. [Ubisoft La Forge](https://www.ubisoft.com/en-us/studio/laforge/news/2NBPwJzPl3DwCAzGTav7Tg/robust-motion-inbetweening) · [GitHub kèm paper](https://github.com/jihoonerd/Robust-Motion-In-betweening)
 5. **Hai trường phái retargeting:**
    - **Tối ưu hoá theo từng frame (analytic/IK-based):** nhanh, chạy real-time trên CPU — đại diện: **GMR**.
    - **Tối ưu hoá batch bằng GPU / kinodynamic:** chính xác hơn, tính cả động lực học, chạy trên GPU — đại diện: **SOMA-retargeter** (dùng NVIDIA Warp).
    - **Học sâu (residual/RL-based):** học một policy sửa lỗi retargeting hoặc học trực tiếp tracking — đây là ranh giới nối sang `01-whole-body-control/` và `04-imitation-learning-rl/`.
+   > 📚 **Đọc thêm (trường phái học sâu):** **Villegas, Yang, Ceylan, Lee (2018)** — *"Neural Kinematic Networks for Unsupervised Motion Retargetting"*, CVPR 2018. Paper kinh điển dùng mạng nơ-ron + forward-kinematics layer + cycle-consistency để học retargeting không giám sát — ý tưởng nền cho hướng "residual/learned retargeting" hiện đại. [arXiv:1804.05653](https://arxiv.org/abs/1804.05653) · [CVF Open Access](https://openaccess.thecvf.com/content_cvpr_2018/html/Villegas_Neural_Kinematic_Networks_CVPR_2018_paper.html)
 
 ---
 

@@ -1,17 +1,25 @@
 # 06 — Vision-Language-Action (VLA): GR00T N1 → N1.7 & SONIC
 
 > Đây là lớp "não cấp cao": nhận ảnh + ngôn ngữ, quyết định *làm gì*, rồi giao lại cho SONIC/WBC (`01-whole-body-control/`) thực thi *làm như thế nào* ở mức khớp/motor. Đây cũng là mảnh ghép cuối cùng nối tất cả các thư mục trước lại với nhau.
+>
+> 📖 **Giải thích chi tiết đầy đủ** (kiến trúc dual-system, flow matching, token space) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
 
 ---
 
 ## A. Khái niệm cần nắm, theo thứ tự
 
 1. **VLA là gì:** một model nhận multimodal input (ảnh camera + câu lệnh ngôn ngữ + proprioception — trạng thái khớp hiện tại) và sinh ra hành động (action chunk), thay vì chỉ phân loại/mô tả ảnh như VLM thông thường.
+   > 📚 **Đọc thêm:** VLA cho robot tay máy cố định bắt nguồn từ **RT-1** — Brohan et al. (Google, 2022), *"RT-1: Robotics Transformer for Real-World Control at Scale"*, [arXiv:2212.06817](https://arxiv.org/abs/2212.06817). Đọc bài này trước RT-2 (đã có Track C2) để thấy bước chuyển từ "policy học từ demo robot" sang "policy tận dụng cả tri thức internet-scale" — chính là hướng GR00T đi tiếp.
 2. **Dòng phát triển VLA nói chung** (đã có trong `../../resources/08-core-reading-list.md` Track C2 — đọc trước nếu chưa quen): RT-2 → OpenVLA → π₀. GR00T là một nhánh **chuyên biệt cho humanoid whole-body**, khác các VLA này ở chỗ output không chỉ điều khiển 1 tay máy cố định mà cả cơ thể (đi lại + thao tác).
+   > 📚 **Đọc thêm:** đọc theo đúng thứ tự RT-2 ([arXiv:2307.15818](https://arxiv.org/abs/2307.15818)) → OpenVLA ([arXiv:2406.09246](https://arxiv.org/abs/2406.09246)) → π₀ ([arXiv:2410.24164](https://arxiv.org/abs/2410.24164)) trong Track C2 trước khi đọc GR00T N1 — mỗi bài đều trích dẫn và so sánh trực tiếp với bài trước.
 3. **GR00T N1 (bản gốc, 3/2025):** foundation model đầu tiên cho generalist humanoid — kiến trúc dual-system (system 2 "suy nghĩ chậm" bằng VLM + system 1 "phản xạ nhanh" bằng diffusion action head).
+   > 📚 **Đọc thêm:** thuật ngữ "System 1/System 2" mà GR00T N1 và nhiều paper robot learning khác mượn có nguồn gốc từ tâm lý học nhận thức — **Daniel Kahneman (2011)**, *"Thinking, Fast and Slow"*. Không bắt buộc đọc cả sách, nhưng biết nguồn gốc ẩn dụ giúp hiểu đúng ý đồ kiến trúc (hệ phản xạ nhanh vs. hệ suy luận chậm) thay vì chỉ nhớ tên gọi. Paper kỹ thuật chính vẫn là GR00T N1 ở mục B.
 4. **N1.5 → N1.6:** các bản cải tiến trung gian — cải thiện dữ liệu huấn luyện, kiến trúc decoupled WBC được tách ra thành nền chung (đây là lý do WBC và VLA đi chung 1 repo `GR00T-WholeBodyControl`).
+   > 📚 **Đọc thêm:** chưa có paper riêng cho N1.5/N1.6 — theo dõi changelog/release notes trong tài liệu chính thức `GR00T-WholeBodyControl` (mục B) và trang HuggingFace của từng checkpoint (`nvidia/GR00T-N1.5-*`, `nvidia/GR00T-N1.6-*`) để biết chính xác thay đổi.
 5. **N1.7 (bản mới nhất):** pretraining trên **EgoScale** — 20,854 giờ video egocentric (góc nhìn thứ nhất) trải rộng 20+ loại tác vụ (sản xuất, bán lẻ, y tế, gia đình...). Phát hiện quan trọng: **scaling law đầu tiên cho độ khéo léo (dexterity) của robot** — càng nhiều dữ liệu video người thật (không cần dữ liệu robot!), robot càng khéo léo hơn theo quy luật có thể dự đoán. Kiến trúc dùng **flow-matching action transformer** để sinh action chunk từ ảnh + ngôn ngữ + proprioception.
+   > 📚 **Đọc thêm:** nguồn chính xác nhất hiện có là [HF blog N1.7](https://huggingface.co/blog/nvidia/gr00t-n1-7) (mục B). Để hiểu "flow matching" làm action head (không phải diffusion thường): **Lipman et al. (2023)** — *"Flow Matching for Generative Modeling"*, [arXiv:2210.02747](https://arxiv.org/abs/2210.02747) — paper toán học gốc của kỹ thuật này, giúp hiểu vì sao nó nhanh hơn diffusion cổ điển cho action generation.
 6. **Tích hợp VLA + SONIC (unified token space):** SONIC không chỉ nhận lệnh từ VR teleop mà còn nhận lệnh trực tiếp từ GR00T N1.x qua cùng một không gian token — cho phép "autonomous VLA-driven whole-body loco-manipulation" (robot tự chủ vừa di chuyển vừa thao tác, không cần người điều khiển).
+   > 📚 **Đọc thêm:** SONIC ([arXiv:2511.07820](https://arxiv.org/abs/2511.07820), mục B) là nguồn chính xác nhất — đã đọc pass-1/2 ở `../01-whole-body-control/` và pass-3 ở `../04-imitation-learning-rl/`, lần này đọc lại đúng phần thực nghiệm VLA-driven loco-manipulation. Nền ý tưởng "token hoá đa phương thức" tổng quát hơn: **Gato** — Reed et al. (DeepMind, 2022), [arXiv:2205.06175](https://arxiv.org/abs/2205.06175) (đã dẫn ở `../01-whole-body-control/`).
 
 ---
 

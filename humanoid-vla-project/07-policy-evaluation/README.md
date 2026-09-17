@@ -2,15 +2,21 @@
 
 > Chạy được policy chưa đủ — bạn cần **chứng minh bằng số liệu** nó tốt tới đâu, tốt hơn baseline nào, và thất bại ở đâu. Đây là mảng dễ bị bỏ qua nhất khi làm robot learning, nhưng lại chính là nơi quyết định một kết quả có thuyết phục được reviewer/mentor hay không.
 
+> 📖 **Giải thích chi tiết đầy đủ** (công thức metric, cách đo sim-to-real gap, benchmark) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
+
 ---
 
 ## A. Khái niệm cần nắm, theo thứ tự
 
 1. **Metric cho motion tracking:** tracking error (khoảng cách pose robot vs. pose tham chiếu theo từng khớp/từng frame), success rate (hoàn thành task hay không, ví dụ đi hết quãng đường mà không ngã), độ mượt chuyển động (jerk/gia tốc), độ lệch quỹ đạo gốc (root trajectory error).
+   > 📚 **Đọc thêm:** các metric này được định nghĩa formal nhất trong phần Evaluation của **DeepMimic** ([arXiv:1804.02717](https://arxiv.org/abs/1804.02717)) và **AMP** ([arXiv:2104.02180](https://arxiv.org/abs/2104.02180)) — đã dẫn ở `../04-imitation-learning-rl/`. Đọc lại đúng phần "Evaluation Metrics" thay vì phần Method.
 2. **Metric cho VLA/loco-manipulation:** success rate theo từng loại task ngôn ngữ, generalization (task chưa thấy trong huấn luyện), robustness (thay đổi ánh sáng, vật thể, môi trường).
+   > 📚 **Đọc thêm:** phần Experiments của **GR00T N1** ([arXiv:2503.14734](https://arxiv.org/abs/2503.14734), đã dẫn ở `../06-vla-groot-sonic/`) — họ báo cáo success rate theo nhiều nhóm task khác nhau kèm so sánh baseline, là mẫu tốt để học cách phân nhóm metric.
 3. **Sim-to-real gap:** đo bằng cách so sánh performance policy *trong simulation* vs. *trên robot thật* cùng 1 tập task — SONIC báo cáo "100% success rate trên 50 trajectory thật, zero-shot" — đây là một cách trình bày sim-to-real gap = 0 rất mạnh, cần hiểu **thiết kế thí nghiệm** đằng sau con số này (bao nhiêu lần thử, điều kiện gì, so với baseline nào).
+   > 📚 **Đọc thêm:** **Zhao, Queralta, Westerlund (2020)** — *"Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics: A Survey"*, IEEE SSCI 2020. Survey tổng quan cách cộng đồng đo và báo cáo sim-to-real gap trước khi đọc cách SONIC làm cụ thể — giúp nhận ra SONIC đang làm gì khác biệt (zero-shot, không fine-tune) so với đa số phương pháp trong survey. [arXiv:2009.13303](https://arxiv.org/abs/2009.13303)
 4. **So sánh công bằng (fair comparison):** cùng 1 bộ test set, cùng số lần thử, cùng điều kiện môi trường — nguyên tắc chung đã có ở `../../resources/07-experiments-and-rigor.md`, áp dụng trực tiếp vào robot learning (nơi rất dễ "cherry-pick" 1 lần chạy đẹp).
 5. **Benchmark chuẩn của cộng đồng:** một số paper trong `humanoid-wbc-review` (`../01-whole-body-control/`) có kèm benchmark suite chuẩn hoá (ví dụ HumanoidVerse có sẵn eval pipeline) — dùng benchmark có sẵn thay vì tự chế để so sánh được với paper khác.
+   > 📚 **Đọc thêm:** **Sferrazza, Huang et al. (UC Berkeley, 2024)** — *"HumanoidBench: Simulated Humanoid Benchmark for Whole-Body Locomotion and Manipulation"*, RSS 2024. Benchmark chuẩn hoá đầu tiên riêng cho humanoid (27 task, nhiều loại robot/tay), dùng MuJoCo — nếu bạn cần so sánh policy của mình với paper khác một cách công bằng, đây là bộ test set nên dùng thay vì tự chế. [humanoid-bench.github.io](https://humanoid-bench.github.io/) · [Paper PDF](https://www.roboticsproceedings.org/rss20/p061.pdf)
 
 ---
 
