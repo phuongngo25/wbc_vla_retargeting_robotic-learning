@@ -3,6 +3,12 @@
 > Đây là "động cơ" biến dữ liệu chuyển động đã retarget (`02-motion-retargeting/`) thành một policy điều khiển thực sự chạy được (`01-whole-body-control/`). File này **không lặp lại** danh sách paper RL/IL tổng quát đã có ở `../../resources/08-core-reading-list.md` Track C2/C3 — mà tập trung vào phần **đặc thù cho humanoid motion tracking**.
 >
 > 📖 **Giải thích chi tiết đầy đủ** (cơ chế reward, discriminator, thuật toán) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-ppo-vs-sac.md`](BAI-GIANG-ppo-vs-sac.md) — PPO (on-policy, clipped surrogate) vs SAC (off-policy, entropy-regularized), vì sao humanoid motion-tracking chọn PPO.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-reward-thu-cong-vs-motion-tracking-reward.md`](BAI-GIANG-reward-thu-cong-vs-motion-tracking-reward.md) — vì sao reward tự thiết kế khó tạo dáng đi tự nhiên, và công thức Gaussian-kernel motion-tracking reward thay thế nó ra sao.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-deepmimic-rsi-et.md`](BAI-GIANG-deepmimic-rsi-et.md) — DeepMimic (2018): reward pha trộn imitation+task, Reference State Initialization, và Early Termination.
 
 ---
 

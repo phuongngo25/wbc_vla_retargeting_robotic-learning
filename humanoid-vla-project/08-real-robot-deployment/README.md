@@ -3,6 +3,8 @@
 > Bước cuối cùng của pipeline: dùng VR để **thu dữ liệu** trên robot thật (teleoperation), và **triển khai** policy đã huấn luyện trong simulation lên phần cứng thật. Đây là phần **cần phần cứng** (robot G1, kính VR) — nếu chưa có, vẫn học được lý thuyết + thử phần simulation-only.
 >
 > 📖 **Giải thích chi tiết đầy đủ** (kiến trúc teleop, quy trình VR setup, deployment) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-vi-sao-can-teleoperation-case-study-aloha.md`](BAI-GIANG-vi-sao-can-teleoperation-case-study-aloha.md) — vì sao teleoperation cần thiết cho thao tác tay tinh xảo, case study ALOHA (chi phí, số demo, tỷ lệ thành công).
 
 ---
 

@@ -3,6 +3,20 @@
 > Retargeting là bài toán: cho một chuyển động của **người** (khác hình dạng, số bậc tự do, tỷ lệ cơ thể), tính ra chuyển động tương ứng cho **robot humanoid** (G1, H1...) sao cho vẫn giữ được "ý nghĩa" của động tác (dáng đi, tư thế, tiếp xúc chân/tay) mà không vi phạm giới hạn vật lý của robot.
 >
 > 📖 **Giải thích chi tiết đầy đủ** (định nghĩa, cơ chế, thuật toán) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
+>
+> 🎓 **Bài giảng chi tiết** (trực giác, phép loại suy, sơ đồ, câu hỏi tự kiểm tra — sinh từ `../PROMPT-TAO-BAI-GIANG.md`), mỗi khái niệm 1 file riêng:
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-vi-sao-khong-the-copy-goc-khop.md`](BAI-GIANG-vi-sao-khong-the-copy-goc-khop.md) — Ba khác biệt cấu trúc khiến việc copy trực tiếp góc khớp thất bại.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-gleicher-constraint-preservation.md`](BAI-GIANG-gleicher-constraint-preservation.md) — Tư tưởng constraint preservation và spacetime optimization của Gleicher (1998).
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-skeleton-mapping.md`](BAI-GIANG-skeleton-mapping.md) — Ánh xạ khớp, bone chain, scale theo tỷ lệ và xử lý DoF không tương ứng.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-ik-jacobian-differential.md`](BAI-GIANG-ik-jacobian-differential.md) — IK Jacobian-based/differential IK, công thức Δθ=J⁺Δx và differential IK dạng QP (mink).
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-ik-fabrik.md`](BAI-GIANG-ik-fabrik.md) — FABRIK: forward/backward reaching, không dùng góc/ma trận xoay, chi phí rẻ cho real-time.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-foot-contact-stabilization.md`](BAI-GIANG-foot-contact-stabilization.md) — Phát hiện contact bằng ngưỡng vận tốc và ghim vị trí bàn chân để loại bỏ foot sliding.
 
 ---
 

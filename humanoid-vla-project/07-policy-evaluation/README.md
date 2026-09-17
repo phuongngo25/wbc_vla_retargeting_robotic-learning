@@ -4,6 +4,16 @@
 
 > 📖 **Giải thích chi tiết đầy đủ** (công thức metric, cách đo sim-to-real gap, benchmark) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
 
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-mpjpe-va-cac-bien-the.md`](BAI-GIANG-mpjpe-va-cac-bien-the.md) — công thức MPJPE, phân biệt global/MPJPE-L/PA-MPJPE, ví dụ tính tay.
+
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-success-rate-jerk-root-trajectory-error.md`](BAI-GIANG-success-rate-jerk-root-trajectory-error.md) — định nghĩa "thành công", công thức jerk (đạo hàm bậc 3), root position/orientation error, ví dụ tính tay từng công thức.
+
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-metric-vla-loco-manipulation.md`](BAI-GIANG-metric-vla-loco-manipulation.md) — phân nhóm seen/unseen task, robustness/OOD testing với delta, ví dụ tính tay phát hiện overfit.
+
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-sim-to-real-gap-cach-do.md`](BAI-GIANG-sim-to-real-gap-cach-do.md) — công thức gap G(π)=ψ_sim−ψ_real, 3 dạng báo cáo (zero-shot/fine-tuned/domain-randomization-coverage), ví dụ tính tay.
+
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-sim-to-real-gap-case-study-sonic.md`](BAI-GIANG-sim-to-real-gap-case-study-sonic.md) — phân tích chi tiết thí nghiệm real-world của SONIC (100% success/50 trajectory, MPJPE-L theo bộ phận cơ thể), cách đọc phản biện một tuyên bố sim-to-real mạnh.
+
 ---
 
 ## A. Khái niệm cần nắm, theo thứ tự

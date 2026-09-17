@@ -3,6 +3,14 @@
 > Toàn bộ pipeline (retargeting → WBC → VLA) phụ thuộc vào chất lượng và quy mô dữ liệu chuyển động người. Hiểu rõ 4 dataset mentor liệt kê — chúng khác nhau về **định dạng**, **loại chuyển động**, và **vai trò trong pipeline**.
 >
 > 📖 **Giải thích chi tiết đầy đủ** (cơ chế body model, cấu trúc dữ liệu, cách xây dựng từng dataset): xem `NOI-DUNG-CHI-TIET.md`.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-smpl-body-model.md`](BAI-GIANG-smpl-body-model.md) — cơ chế toán học của body model SMPL (shape/pose blend shapes, Linear Blend Skinning).
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-smpl-x-mo-rong.md`](BAI-GIANG-smpl-x-mo-rong.md) — SMPL-X mở rộng gì so với SMPL (bàn tay MANO, khuôn mặt FLAME, 119 tham số).
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-amass-mosh.md`](BAI-GIANG-amass-mosh.md) — cách AMASS hợp nhất 15 bộ mocap bằng MoSh/MoSh++, số liệu chính thức và giới hạn dữ liệu.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-omomo.md`](BAI-GIANG-omomo.md) — bài toán object motion guided human motion synthesis và kiến trúc diffusion 2 bước của OMOMO.
 
 ---
 

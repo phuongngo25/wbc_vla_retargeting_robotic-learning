@@ -4,6 +4,14 @@
 >
 > 📖 **Giải thích chi tiết đầy đủ** (định nghĩa, cơ chế, công thức) cho từng khái niệm ở mục A: xem `NOI-DUNG-CHI-TIET.md`.
 
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-task-space-operational-space-control.md`](BAI-GIANG-task-space-operational-space-control.md) — Task-space/Operational-space control (Khatib 1987): Jacobian, Λ, null-space projection.
+
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-quadratic-programming-trong-wbc.md`](BAI-GIANG-quadratic-programming-trong-wbc.md) — Quadratic Programming (QP) trong WBC: hàm mục tiêu bậc hai, ràng buộc động lực học/friction cone/giới hạn khớp, bộ giải QP thực tế.
+
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-hierarchical-qp-hqp.md`](BAI-GIANG-hierarchical-qp-hqp.md) — Hierarchical QP (HQP): giải nhiều tác vụ theo thứ tự ưu tiên cứng bằng chuỗi QP + generalized projector.
+
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-zmp-cart-table.md`](BAI-GIANG-zmp-cart-table.md) — ZMP (Zero Moment Point) và mô hình cart-table (Kajita 2003): điều kiện thăng bằng động, quan hệ tuyến tính ZMP-trọng tâm.
+
 ---
 
 ## A. Khái niệm cần nắm, theo thứ tự
