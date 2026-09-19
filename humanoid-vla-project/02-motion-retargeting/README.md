@@ -17,6 +17,16 @@
 > 🎓 **Bài giảng đã có**: [`BAI-GIANG-ik-fabrik.md`](BAI-GIANG-ik-fabrik.md) — FABRIK: forward/backward reaching, không dùng góc/ma trận xoay, chi phí rẻ cho real-time.
 >
 > 🎓 **Bài giảng đã có**: [`BAI-GIANG-foot-contact-stabilization.md`](BAI-GIANG-foot-contact-stabilization.md) — Phát hiện contact bằng ngưỡng vận tốc và ghim vị trí bàn chân để loại bỏ foot sliding.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-joint-limit-clamping-velocity-limiting.md`](BAI-GIANG-joint-limit-clamping-velocity-limiting.md) — Clamp góc khớp về giới hạn cơ học và giới hạn tốc độ thay đổi góc giữa các frame.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-gmr-kien-truc-pipeline.md`](BAI-GIANG-gmr-kien-truc-pipeline.md) — Kiến trúc GMR: multi-objective differential IK qua mink+MuJoCo, non-uniform scaling, velocity limit trong QP, real-time trên CPU.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-soma-retargeter-kien-truc-pipeline.md`](BAI-GIANG-soma-retargeter-kien-truc-pipeline.md) — Pipeline 5 bước của SOMA-retargeter: BVH → scale → IK GPU (Newton+Warp) → ổn định/giới hạn → CSV, cho xử lý batch quy mô lớn.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-villegas-retargeting-hoc-sau.md`](BAI-GIANG-villegas-retargeting-hoc-sau.md) — Neural Kinematic Networks (Villegas 2018): FK layer + cycle-consistency không giám sát, và các kế thừa 2020–2026 (Aberman, G-DReaM, ReActor).
+>
+> 🎓 **Bài giảng đã có** *(bổ sung ngoài checklist gốc)*: [`BAI-GIANG-umr-unified-motion-retargeting.md`](BAI-GIANG-umr-unified-motion-retargeting.md) — UMR (2026): học dense point-cloud correspondence thay cho sparse keypoint mapping thủ công của GMR/SOMA.
 
 ---
 
@@ -45,8 +55,10 @@
 | **GMR** (General Motion Retargeting, YanjieZe) | 🔴 Công cụ chính, mentor chỉ định | Real-time trên CPU (35–70 FPS), hỗ trợ input đa dạng: SMPL-X (AMASS, OMOMO), BVH (LAFAN1, Nokov), FBX (OptiTrack), streaming trực tiếp (Xsens, OptiTrack), cả video đơn mắt qua GVHMR. Output tương thích 17+ robot (Unitree G1/H1, Booster, Fourier, Talos...). Chấp nhận tại ICRA 2026. | [GitHub](https://github.com/YanjieZe/GMR) |
 | **SOMA-retargeter** (NVIDIA) | 🔴 Công cụ thứ hai, mentor chỉ định | Chuyển BVH (định dạng SOMA-skeleton) → animation khớp robot bằng 5 bước: đọc BVH → scale khớp → giải IK từng frame (GPU, Newton + NVIDIA Warp) → ổn định tiếp xúc chân + giới hạn khớp → xuất CSV (root pose + joint values). Hỗ trợ sẵn G1, H2, Booster T1, AGIBot X2Ultra/A3T3. | [GitHub](https://github.com/NVIDIA/soma-retargeter) |
 | **GR00T-WholeBodyControl — data prep docs** | 🟡 Tham khảo | Mô tả cách dữ liệu retarget (từ BONES-SEED) được dùng làm target huấn luyện SONIC — đọc để hiểu retargeting không phải bước "để có video đẹp" mà là **bước sinh nhãn** cho RL. | [Docs](https://nvlabs.github.io/GR00T-WholeBodyControl/) |
+| **UMR** (Unified Motion Retargeting, Cao et al. 2026) | 🟢 Hướng nghiên cứu mới, chưa phải công cụ chính thức của dự án | Học **dense point-cloud correspondence** giữa bề mặt người và robot (thay vì sparse keypoint mapping thủ công của GMR/SOMA-retargeter) — xem [`BAI-GIANG-umr-unified-motion-retargeting.md`](BAI-GIANG-umr-unified-motion-retargeting.md). **Chưa có** bảng số liệu định lượng công khai so với GMR/OmniRetarget tại thời điểm tra cứu (09/2026) — chỉ so sánh định tính bằng hình ảnh. | [Project page](https://hanyang9.github.io/UMR/) · [arXiv:2609.02134](https://arxiv.org/abs/2609.02134) · [GitHub](https://github.com/hanyang9/UMR) |
+| **OmniRetarget** (2026) | 🟢 Hướng nghiên cứu mới | Dùng **interaction mesh tường minh** (không học) để giữ quan hệ không gian/tiếp xúc giữa agent–địa hình–vật thể khi retarget các kỹ năng loco-manipulation phức tạp — hướng tiếp cận khác UMR (tường minh vs. học) cho cùng một lớp hạn chế của sparse mapping. | [arXiv:2509.26633](https://arxiv.org/abs/2509.26633) |
 
-> 💡 **Cần research thêm** (mentor lưu ý): retargeting học sâu / residual (không chỉ IK thuần) — tìm trong `humanoid-wbc-review` (`../01-whole-body-control/`) mục datasets & retargeting tools, và tìm citation của GMR trên Semantic Scholar để xem hướng nào đang phát triển tiếp (ví dụ xử lý tương tác vật thể phức tạp từ OMOMO, nơi retargeting phải giữ cả quan hệ tay–vật thể, không chỉ tư thế cơ thể).
+> 💡 **Research đã bổ sung (09/2026):** đã tìm và viết bài giảng riêng cho hướng "correspondence học được thay cho sparse mapping thủ công" — xem UMR ở trên và bài giảng riêng. Vẫn còn khoảng trống cần research thêm: retargeting cho **tay khéo léo (dexterous hands)** khi dữ liệu nguồn không có mocap ngón tay chi tiết, và retargeting giữ quan hệ tay–vật thể phức tạp từ OMOMO (`../03-human-motion-datasets/`) ở mức chi tiết hơn OmniRetarget hiện có.
 
 ---
 

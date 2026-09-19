@@ -11,6 +11,20 @@
 > 🎓 **Bài giảng đã có**: [`BAI-GIANG-hierarchical-qp-hqp.md`](BAI-GIANG-hierarchical-qp-hqp.md) — Hierarchical QP (HQP): giải nhiều tác vụ theo thứ tự ưu tiên cứng bằng chuỗi QP + generalized projector.
 
 > 🎓 **Bài giảng đã có**: [`BAI-GIANG-zmp-cart-table.md`](BAI-GIANG-zmp-cart-table.md) — ZMP (Zero Moment Point) và mô hình cart-table (Kajita 2003): điều kiện thăng bằng động, quan hệ tuyến tính ZMP-trọng tâm.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-zmp-preview-control.md`](BAI-GIANG-zmp-preview-control.md) — bộ điều khiển "nhìn trước" cửa sổ ZMP tham chiếu tương lai (Kajita 2003), cập nhật DCM.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-mpc-cho-dang-di.md`](BAI-GIANG-mpc-cho-dang-di.md) — receding horizon, giải lại bài toán tối ưu mỗi bước, benchmark MPC vs RL 2025.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-vi-sao-rl-thay-the-model-based.md`](BAI-GIANG-vi-sao-rl-thay-the-model-based.md) — 3 hạn chế của WBC cổ điển, chi phí kỹ sư viết tay reward vs motion-tracking.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-huan-luyen-song-song-quy-mo-lon-rudin.md`](BAI-GIANG-huan-luyen-song-song-quy-mo-lon-rudin.md) — Rudin et al. 2022: hàng nghìn ANYmal song song trên GPU, curriculum kiểu game.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-domain-randomization.md`](BAI-GIANG-domain-randomization.md) — ngẫu nhiên hoá tham số mô phỏng để giảm sim-to-real gap, cập nhật ADR.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-sonic-decoupled-wbc.md`](BAI-GIANG-sonic-decoupled-wbc.md) — kiến trúc 2 lớp của SONIC (arXiv:2511.07820): low-level motion-tracking + high-level planner.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-token-space-thong-nhat-sonic.md`](BAI-GIANG-token-space-thong-nhat-sonic.md) — 3 encoder + FSQ quantizer tạo universal motion token cho SONIC.
 
 ---
 

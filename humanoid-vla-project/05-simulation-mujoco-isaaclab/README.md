@@ -3,6 +3,24 @@
 > Đây là "sân tập" — nơi bạn thực sự chạy retargeting, huấn luyện WBC, và kiểm thử policy trước khi đụng tới robot thật. Chọn công cụ đúng ngay từ đầu tiết kiệm rất nhiều thời gian.
 >
 > 📖 **Giải thích chi tiết đầy đủ** (kiến trúc physics engine, GPU parallelization, định dạng file): xem `NOI-DUNG-CHI-TIET.md`.
+>
+> 🎓 **Bài giảng chi tiết** (trực giác, phép loại suy, sơ đồ, câu hỏi tự kiểm tra — sinh từ `../PROMPT-TAO-BAI-GIANG.md`), mỗi khái niệm 1 file riêng:
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-generalized-vs-cartesian-coordinates.md`](BAI-GIANG-generalized-vs-cartesian-coordinates.md) — vì sao MuJoCo dùng generalized coordinates thay vì Cartesian/maximal coordinates.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-contact-dynamics-velocity-stepping-vs-spring-damper.md`](BAI-GIANG-contact-dynamics-velocity-stepping-vs-spring-damper.md) — velocity-stepping/convex optimization (MuJoCo) so với spring-damper (game engine).
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-mjcf-dinh-dang-mujoco.md`](BAI-GIANG-mjcf-dinh-dang-mujoco.md) — 10 element XML cấp cao của MJCF, joint = "cộng thêm" bậc tự do.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-mujoco-playground-mjx-jax.md`](BAI-GIANG-mujoco-playground-mjx-jax.md) — kiến trúc MJX/JAX chạy hàng nghìn instance song song trên GPU, cập nhật MuJoCo Warp/dự án Newton.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-isaac-gym-den-isaac-lab.md`](BAI-GIANG-isaac-gym-den-isaac-lab.md) — loại bỏ round-trip CPU↔GPU (Isaac Gym), kế thừa lên Isaac Lab (USD, Warp, RSL-RL, WBC/teleop 2.3).
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-humanoidverse-multi-simulator.md`](BAI-GIANG-humanoidverse-multi-simulator.md) — kiến trúc 3 lớp Simulator/Task/Algorithm độc lập, kiểm tra robustness đa engine.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-so-sanh-mjcf-urdf-usd.md`](BAI-GIANG-so-sanh-mjcf-urdf-usd.md) — bảng so sánh URDF/MJCF/USD và hướng convert thực dụng trong pipeline.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-rsl-rl-ppo-isaac-lab.md`](BAI-GIANG-rsl-rl-ppo-isaac-lab.md) — vì sao PPO on-policy khớp với GPU-parallel training, symmetry augmentation, RND.
 
 ---
 

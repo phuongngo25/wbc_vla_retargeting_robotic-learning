@@ -174,17 +174,17 @@ TRƯỚC KHI VIẾT: chạy tối thiểu 2-3 lượt WebSearch/WebFetch để t
 
 | # | `{{TEN_KHAI_NIEM}}` |
 |---|---|
-| 1 | Task-space control / Operational-space control là gì |
-| 2 | Quadratic Programming (QP) trong WBC |
-| 3 | Hierarchical QP (HQP) — giải nhiều tác vụ theo thứ tự ưu tiên |
-| 4 | ZMP (Zero Moment Point) và mô hình cart-table |
-| 5 | ZMP preview control |
-| 6 | MPC cho dáng đi |
-| 7 | Vì sao RL thay thế được model-based control |
-| 8 | Huấn luyện song song quy mô lớn (Rudin et al. 2022) |
-| 9 | Domain randomization (khái niệm) |
-| 10 | Kiến trúc "decoupled WBC" của SONIC — ý tưởng tách 2 lớp |
-| 11 | Token space thống nhất của SONIC |
+| 1 | Task-space control / Operational-space control là gì ✅ |
+| 2 | Quadratic Programming (QP) trong WBC ✅ |
+| 3 | Hierarchical QP (HQP) — giải nhiều tác vụ theo thứ tự ưu tiên ✅ |
+| 4 | ZMP (Zero Moment Point) và mô hình cart-table ✅ |
+| 5 | ZMP preview control ✅ |
+| 6 | MPC cho dáng đi ✅ |
+| 7 | Vì sao RL thay thế được model-based control ✅ |
+| 8 | Huấn luyện song song quy mô lớn (Rudin et al. 2022) ✅ |
+| 9 | Domain randomization (khái niệm) ✅ |
+| 10 | Kiến trúc "decoupled WBC" của SONIC — ý tưởng tách 2 lớp ✅ |
+| 11 | Token space thống nhất của SONIC ✅ |
 
 ### 02 — Motion Retargeting
 `{{NOI_DUNG_GOC}}` lấy từ `02-motion-retargeting/NOI-DUNG-CHI-TIET.md`
@@ -198,9 +198,10 @@ TRƯỚC KHI VIẾT: chạy tối thiểu 2-3 lượt WebSearch/WebFetch để t
 | 5 | Inverse Kinematics per-frame — thuật toán FABRIK |
 | 6 | Ràng buộc vật lý: foot contact stabilization |
 | 7 | Ràng buộc vật lý: joint limit clamping & velocity limiting |
-| 8 | GMR — kiến trúc và pipeline |
-| 9 | SOMA-retargeter — kiến trúc và pipeline |
-| 10 | Retargeting học sâu/residual (Villegas et al. 2018) |
+| 8 | GMR — kiến trúc và pipeline ✅ |
+| 9 | SOMA-retargeter — kiến trúc và pipeline ✅ |
+| 10 | Retargeting học sâu/residual (Villegas et al. 2018) ✅ |
+| 11 | *(bổ sung ngoài checklist gốc, theo yêu cầu 2026)* UMR — Unified Motion Retargeting qua learned point-cloud correspondence ✅ |
 
 ### 03 — Human Motion Datasets
 `{{NOI_DUNG_GOC}}` lấy từ `03-human-motion-datasets/NOI-DUNG-CHI-TIET.md`
@@ -211,8 +212,8 @@ TRƯỚC KHI VIẾT: chạy tối thiểu 2-3 lượt WebSearch/WebFetch để t
 | 2 | SMPL-X — mở rộng so với SMPL |
 | 3 | AMASS — cách xây dựng (MoSh/MoSh++) |
 | 4 | OMOMO — bài toán object motion guided human motion synthesis |
-| 5 | LAFAN1 và định dạng BVH |
-| 6 | BONES-SEED |
+| 5 | LAFAN1 và định dạng BVH ✅ |
+| 6 | BONES-SEED ✅ |
 
 ### 04 — Imitation Learning & RL
 `{{NOI_DUNG_GOC}}` lấy từ `04-imitation-learning-rl/NOI-DUNG-CHI-TIET.md`
@@ -234,14 +235,14 @@ TRƯỚC KHI VIẾT: chạy tối thiểu 2-3 lượt WebSearch/WebFetch để t
 
 | # | `{{TEN_KHAI_NIEM}}` |
 |---|---|
-| 1 | Generalized coordinates vs Cartesian coordinates |
-| 2 | Contact dynamics: velocity-stepping/convex optimization vs spring-damper |
-| 3 | MJCF — định dạng mô tả robot của MuJoCo |
-| 4 | MuJoCo Playground — kiến trúc MJX/JAX |
-| 5 | Isaac Gym → Isaac Lab — kiến trúc GPU-based |
-| 6 | HumanoidVerse — lớp trừu tượng multi-simulator |
-| 7 | So sánh MJCF vs URDF vs USD |
-| 8 | RSL-RL và PPO trong Isaac Lab |
+| 1 | Generalized coordinates vs Cartesian coordinates ✅ |
+| 2 | Contact dynamics: velocity-stepping/convex optimization vs spring-damper ✅ |
+| 3 | MJCF — định dạng mô tả robot của MuJoCo ✅ |
+| 4 | MuJoCo Playground — kiến trúc MJX/JAX ✅ |
+| 5 | Isaac Gym → Isaac Lab — kiến trúc GPU-based ✅ |
+| 6 | HumanoidVerse — lớp trừu tượng multi-simulator ✅ |
+| 7 | So sánh MJCF vs URDF vs USD ✅ |
+| 8 | RSL-RL và PPO trong Isaac Lab ✅ |
 
 ### 06 — VLA: GR00T N1 → N1.7 & SONIC
 `{{NOI_DUNG_GOC}}` lấy từ `06-vla-groot-sonic/NOI-DUNG-CHI-TIET.md`

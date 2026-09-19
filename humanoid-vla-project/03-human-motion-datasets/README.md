@@ -11,6 +11,10 @@
 > 🎓 **Bài giảng đã có**: [`BAI-GIANG-amass-mosh.md`](BAI-GIANG-amass-mosh.md) — cách AMASS hợp nhất 15 bộ mocap bằng MoSh/MoSh++, số liệu chính thức và giới hạn dữ liệu.
 >
 > 🎓 **Bài giảng đã có**: [`BAI-GIANG-omomo.md`](BAI-GIANG-omomo.md) — bài toán object motion guided human motion synthesis và kiến trúc diffusion 2 bước của OMOMO.
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-lafan1-dinh-dang-bvh.md`](BAI-GIANG-lafan1-dinh-dang-bvh.md) — cấu trúc file BVH (HIERARCHY + MOTION), 3 khác biệt với SMPL/SMPL-X, quy trình mocap LAFAN1 (Ubisoft La Forge).
+>
+> 🎓 **Bài giảng đã có**: [`BAI-GIANG-bones-seed.md`](BAI-GIANG-bones-seed.md) — quy mô 142.220 chuyển động/288 giờ, vai trò công cụ của NVIDIA (SOMA-retargeter + Kimodo), bản retarget G1 sẵn có.
 
 ---
 
